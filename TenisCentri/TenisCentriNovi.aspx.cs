@@ -27,9 +27,11 @@ namespace TenisCentri
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Naziv i koordinate su obavezni!');", true);
                 return;
             }
+            decimal longitude;
+            decimal latitude;
 
-            if (!decimal.TryParse(lat, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal latitude) ||
-        !decimal.TryParse(lng, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal longitude))
+            if (!decimal.TryParse(lat, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out latitude) ||
+        !decimal.TryParse(lng, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out longitude))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "errorToast",
                     "toastr.error('Koordinate moraju biti numeričke vrijednosti!', 'Greška');", true);
@@ -84,7 +86,7 @@ namespace TenisCentri
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "errorToast",
-           $"toastr.error('Došlo je do greške: {ex.Message}', 'Greška');", true);
+     string.Format("toastr.error('Došlo je do greške: {0}', 'Greška');", ex.Message), true);
             }
 
 
